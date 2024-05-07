@@ -1,0 +1,99 @@
+[gd_scene load_steps=9 format=3 uid="uid://w4wyf5pdcvr2"]
+
+[ext_resource type="Texture2D" uid="uid://dna3n6405mk41" path="res://icon.svg" id="1_gdyrg"]
+[ext_resource type="Script" path="res://ship/spaceship.gd" id="1_okpmr"]
+[ext_resource type="Script" path="res://left_wall.gd" id="3_741j5"]
+[ext_resource type="Script" path="res://right_wall.gd" id="4_34cy5"]
+[ext_resource type="Script" path="res://top_wall.gd" id="5_jpvde"]
+[ext_resource type="Script" path="res://bottom_wall.gd" id="6_udiu1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pfvii"]
+size = Vector2(146, 140)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xej1h"]
+size = Vector2(20, 394)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+position = Vector2(549, 110)
+script = ExtResource("1_okpmr")
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D"]
+position = Vector2(2, -1)
+texture = ExtResource("1_gdyrg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+position = Vector2(4, 2)
+shape = SubResource("RectangleShape2D_pfvii")
+
+[node name="Left Wall" type="StaticBody2D" parent="."]
+position = Vector2(83, 213)
+script = ExtResource("3_741j5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left Wall"]
+modulate = Color(1, 0.196078, 1, 1)
+self_modulate = Color(0.247059, 1, 1, 1)
+position = Vector2(1, 188)
+shape = SubResource("RectangleShape2D_xej1h")
+debug_color = Color(0.976602, 0, 0.410597, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="Left Wall"]
+position = Vector2(2.5, 187.5)
+scale = Vector2(0.164063, 3.02344)
+texture = ExtResource("1_gdyrg")
+
+[node name="Right Wall" type="StaticBody2D" parent="."]
+position = Vector2(83, 213)
+script = ExtResource("4_34cy5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right Wall"]
+modulate = Color(1, 0.196078, 1, 1)
+self_modulate = Color(0.247059, 1, 1, 1)
+position = Vector2(1, 188)
+shape = SubResource("RectangleShape2D_xej1h")
+debug_color = Color(0.976602, 0, 0.410597, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="Right Wall"]
+position = Vector2(2.5, 187.5)
+scale = Vector2(0.164063, 3.02344)
+texture = ExtResource("1_gdyrg")
+
+[node name="Top Wall" type="StaticBody2D" parent="."]
+position = Vector2(83, 213)
+script = ExtResource("5_jpvde")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top Wall"]
+modulate = Color(1, 0.196078, 1, 1)
+self_modulate = Color(0.247059, 1, 1, 1)
+position = Vector2(1, 188)
+shape = SubResource("RectangleShape2D_xej1h")
+debug_color = Color(0.976602, 0, 0.410597, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="Top Wall"]
+position = Vector2(2.5, 187.5)
+scale = Vector2(0.164063, 3.02344)
+texture = ExtResource("1_gdyrg")
+
+[node name="Bottom Wall" type="StaticBody2D" parent="."]
+position = Vector2(83, 213)
+script = ExtResource("6_udiu1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bottom Wall"]
+modulate = Color(1, 0.196078, 1, 1)
+self_modulate = Color(0.247059, 1, 1, 1)
+position = Vector2(1, 188)
+shape = SubResource("RectangleShape2D_xej1h")
+debug_color = Color(0.976602, 0, 0.410597, 0.42)
+
+[node name="Sprite2D" type="Sprite2D" parent="Bottom Wall"]
+position = Vector2(2.5, 187.5)
+scale = Vector2(0.164063, 3.02344)
+texture = ExtResource("1_gdyrg")
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Shoot missile"
+
+[connection signal="pressed" from="Button" to="CharacterBody2D" method="_on_button_pressed"]
