@@ -5,7 +5,7 @@ var screenWidth = get_viewport_rect().size.x
 var screenHeight = get_viewport_rect().size.y
 
 # Ship constant speed
-const speed = 30
+const speed = 7.5
 
 func _init():
 	pass
