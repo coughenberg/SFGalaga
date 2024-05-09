@@ -1,13 +1,20 @@
-[gd_scene load_steps=11 format=3 uid="uid://w4wyf5pdcvr2"]
+[gd_scene load_steps=14 format=3 uid="uid://w4wyf5pdcvr2"]
 
 [ext_resource type="Texture2D" uid="uid://dna3n6405mk41" path="res://icon.svg" id="1_gdyrg"]
 [ext_resource type="Script" path="res://world.gd" id="1_i5vsr"]
 [ext_resource type="Script" path="res://ship/spaceship.gd" id="1_okpmr"]
+[ext_resource type="Shader" path="res://scroll.gdshader" id="2_0i6g5"]
 [ext_resource type="Texture2D" uid="uid://dooao58xrrofa" path="res://ship/spaceship.png" id="2_62jbx"]
 [ext_resource type="Script" path="res://walls/left_wall.gd" id="3_741j5"]
 [ext_resource type="Script" path="res://walls/right_wall.gd" id="4_34cy5"]
 [ext_resource type="Script" path="res://walls/top_wall.gd" id="5_jpvde"]
 [ext_resource type="Script" path="res://walls/bottom_wall.gd" id="6_udiu1"]
+[ext_resource type="Texture2D" uid="uid://4lkxdvq30sga" path="res://background/starry_sky.png" id="9_r8nf1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lh4c2"]
+shader = ExtResource("2_0i6g5")
+shader_parameter/y_speed = 0.02
+shader_parameter/x_speed = 0.02
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5krt7"]
 size = Vector2(28, 44)
@@ -17,6 +24,16 @@ size = Vector2(20, 394)
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_i5vsr")
+
+[node name="Starry Background" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_lh4c2")
+offset_left = -1.0
+offset_top = -2.0
+offset_right = 1157.0
+offset_bottom = 648.0
+texture = ExtResource("9_r8nf1")
+stretch_mode = 1
 
 [node name="Space Ship" type="CharacterBody2D" parent="."]
 position = Vector2(549, 110)
@@ -101,7 +118,6 @@ offset_bottom = 8.0
 text = "Shoot missile"
 
 [node name="Enemy Timer" type="Timer" parent="."]
-wait_time = 2.0
 autostart = true
 
 [connection signal="pressed" from="Button" to="Space Ship" method="_on_button_pressed"]

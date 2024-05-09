@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dc2m5e5swh4qm"]
+
+[ext_resource type="Script" path="res://asteroids/medium_asteroid.gd" id="1_swou8"]
+[ext_resource type="Texture2D" uid="uid://c644351g2h730" path="res://asteroids/medium_asteroid.png" id="2_6ioa4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5fpuj"]
+size = Vector2(12, 13)
+
+[node name="Medium Asteroid" type="Area2D"]
+script = ExtResource("1_swou8")
+
+[node name="MASprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_6ioa4")
+
+[node name="MACollision" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_5fpuj")
+
+[node name="MAVisible" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(0.500001, 0.5)
+scale = Vector2(1.65, 1.55)
+
+[connection signal="screen_exited" from="MAVisible" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
