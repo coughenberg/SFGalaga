@@ -4,9 +4,11 @@
 [ext_resource type="Texture2D" uid="uid://c644351g2h730" path="res://asteroids/medium_asteroid.png" id="2_6ioa4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fpuj"]
-size = Vector2(12, 13)
+size = Vector2(33, 31)
 
 [node name="Medium Asteroid" type="Area2D"]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource("1_swou8")
 
 [node name="MASprite" type="Sprite2D" parent="."]
@@ -20,4 +22,5 @@ shape = SubResource("RectangleShape2D_5fpuj")
 position = Vector2(0.500001, 0.5)
 scale = Vector2(1.65, 1.55)
 
-[connection signal="screen_exited" from="MAVisible" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="MAVisible" to="." method="_on_ma_visible_screen_exited"]

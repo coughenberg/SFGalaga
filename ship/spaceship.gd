@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name SpaceShip extends CharacterBody2D
 
 # Screen borders
 var screenWidth = get_viewport_rect().size.x
@@ -43,3 +43,6 @@ func _physics_process(delta):
 
 func shoot():
 	laser_shot.emit(laser_scene, muzzle.global_position)
+
+func die():
+	queue_free()
