@@ -1,12 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://w4wyf5pdcvr2"]
+[gd_scene load_steps=12 format=3 uid="uid://w4wyf5pdcvr2"]
 
 [ext_resource type="Texture2D" uid="uid://dna3n6405mk41" path="res://icon.svg" id="1_gdyrg"]
 [ext_resource type="Script" path="res://world.gd" id="1_i5vsr"]
-[ext_resource type="Script" path="res://ship/spaceship.gd" id="1_okpmr"]
 [ext_resource type="Shader" path="res://scroll.gdshader" id="2_0i6g5"]
-[ext_resource type="Texture2D" uid="uid://dooao58xrrofa" path="res://ship/spaceship.png" id="2_62jbx"]
 [ext_resource type="Script" path="res://walls/left_wall.gd" id="3_741j5"]
 [ext_resource type="Script" path="res://walls/right_wall.gd" id="4_34cy5"]
+[ext_resource type="PackedScene" uid="uid://dt2xwp702a401" path="res://space_ship.tscn" id="4_u3564"]
 [ext_resource type="Script" path="res://walls/top_wall.gd" id="5_jpvde"]
 [ext_resource type="Script" path="res://walls/bottom_wall.gd" id="6_udiu1"]
 [ext_resource type="Texture2D" uid="uid://4lkxdvq30sga" path="res://background/starry_sky.png" id="9_r8nf1"]
@@ -15,9 +14,6 @@
 shader = ExtResource("2_0i6g5")
 shader_parameter/y_speed = 0.02
 shader_parameter/x_speed = 0.02
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5krt7"]
-size = Vector2(28, 44)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xej1h"]
 size = Vector2(20, 394)
@@ -35,18 +31,7 @@ offset_bottom = 648.0
 texture = ExtResource("9_r8nf1")
 stretch_mode = 1
 
-[node name="Space Ship" type="CharacterBody2D" parent="."]
-position = Vector2(549, 110)
-script = ExtResource("1_okpmr")
-
-[node name="Sprite2D" type="Sprite2D" parent="Space Ship"]
-position = Vector2(13, 9)
-scale = Vector2(1.6875, 1.625)
-texture = ExtResource("2_62jbx")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Space Ship"]
-position = Vector2(13, 9)
-shape = SubResource("RectangleShape2D_5krt7")
+[node name="SpaceShip" parent="." instance=ExtResource("4_u3564")]
 
 [node name="Left Wall" type="StaticBody2D" parent="."]
 position = Vector2(83, 213)
@@ -112,13 +97,9 @@ position = Vector2(2.5, 187.5)
 scale = Vector2(0.164063, 3.02344)
 texture = ExtResource("1_gdyrg")
 
-[node name="Button" type="Button" parent="."]
-offset_right = 8.0
-offset_bottom = 8.0
-text = "Shoot missile"
-
 [node name="Enemy Timer" type="Timer" parent="."]
 autostart = true
 
-[connection signal="pressed" from="Button" to="Space Ship" method="_on_button_pressed"]
+[node name="LaserContainer" type="Node2D" parent="."]
+
 [connection signal="timeout" from="Enemy Timer" to="." method="_on_enemy_timer_timeout"]

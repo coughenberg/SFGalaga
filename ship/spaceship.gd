@@ -5,13 +5,30 @@ var screenWidth = get_viewport_rect().size.x
 var screenHeight = get_viewport_rect().size.y
 
 # Ship constant speed
-const speed = 7.5
+@export var speed = 7.5
+
+var laser_scene = preload("res://normal_laser.tscn")
+
+signal laser_shot(laser_scene, location)
+
+@onready var muzzle = $Muzzle
+
+var shoot_cd = false
+
+const laser_rate = 0.25
 
 func _init():
 	pass
 
+func _process(delta):
+	if Input.is_action_pressed("shoot") && !shoot_cd:
+		shoot_cd = true
+		shoot()
+		await get_tree().create_timer(laser_rate).timeout
+		shoot_cd = false
+
 func get_velocity_input():
-	var input_direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_direction = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var vel = input_direction * speed
 	return vel
 
@@ -24,5 +41,5 @@ func _physics_process(delta):
 	var collision = move_and_collide(vel)
 
 
-func _on_button_pressed():
-	pass # Replace with function body.
+func shoot():
+	laser_shot.emit(laser_scene, muzzle.global_position)
