@@ -8,6 +8,7 @@ size = Vector2(28, 44)
 
 [node name="Space Ship" type="CharacterBody2D"]
 position = Vector2(549, 110)
+collision_mask = 2
 script = ExtResource("1_nhjfa")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

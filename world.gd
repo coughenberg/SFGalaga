@@ -14,8 +14,6 @@ var asteroids = [large_asteroid_scene, medium_asteroid_scene, small_asteroid_sce
 const X_LEFTMOST = 100
 const X_RIGHTMOST = 1100
 
-#var ship = null
-
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	assert(ship != null)

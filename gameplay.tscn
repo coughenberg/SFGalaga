@@ -28,10 +28,14 @@ offset_left = -1.0
 offset_top = -2.0
 offset_right = 1157.0
 offset_bottom = 648.0
+scale = Vector2(0.465838, 1.4793)
 texture = ExtResource("9_r8nf1")
 stretch_mode = 1
 
 [node name="SpaceShip" parent="." instance=ExtResource("4_u3564")]
+position = Vector2(284.5, 817.5)
+scale = Vector2(0.978519, 1)
+motion_mode = 1
 
 [node name="Left Wall" type="StaticBody2D" parent="."]
 position = Vector2(83, 213)
