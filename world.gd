@@ -12,7 +12,7 @@ var asteroids = [large_asteroid_scene, medium_asteroid_scene, small_asteroid_sce
 
 # The left and right most positions without hitting the borders
 const X_LEFTMOST = 100
-const X_RIGHTMOST = 1100
+const X_RIGHTMOST = 800
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

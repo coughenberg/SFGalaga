@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c644351g2h730"
-path="res://.godot/imported/medium_asteroid.png-f6b763d2fdaddca8b3935fde9eb85eb2.ctex"
+uid="uid://dvw2hutye0yv4"
+path="res://.godot/imported/shooting_4.png-00dc9d511cdc05b9516be6cfac6b4346.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://asteroids/medium_asteroid.png"
-dest_files=["res://.godot/imported/medium_asteroid.png-f6b763d2fdaddca8b3935fde9eb85eb2.ctex"]
+source_file="res://ship/assets/muzzle/shooting_4.png"
+dest_files=["res://.godot/imported/shooting_4.png-00dc9d511cdc05b9516be6cfac6b4346.ctex"]
 
 [params]
 

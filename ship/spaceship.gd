@@ -13,9 +13,13 @@ signal laser_shot(laser_scene, location)
 
 @onready var muzzle = $Muzzle
 
+@onready var animate_shots: AnimatedSprite2D = $AnimateShots
+
 var shoot_cd = false
 
-const laser_rate = 0.25
+const laser_cooldown_rate = 0.5
+
+const laser_animation = 0.08
 
 func _init():
 	pass
@@ -23,8 +27,9 @@ func _init():
 func _process(delta):
 	if Input.is_action_pressed("shoot") && !shoot_cd:
 		shoot_cd = true
+		animate_shots.play("shoot")
 		shoot()
-		await get_tree().create_timer(laser_rate).timeout
+		await get_tree().create_timer(laser_cooldown_rate).timeout
 		shoot_cd = false
 
 func get_velocity_input():
@@ -34,7 +39,6 @@ func get_velocity_input():
 
 func get_shooting_input():
 	var is_key_pressed = Input.is_physical_key_pressed(KEY_SPACE)
-	print(is_key_pressed)
 
 func _physics_process(delta):
 	var vel = get_velocity_input()
@@ -42,6 +46,7 @@ func _physics_process(delta):
 
 
 func shoot():
+	await get_tree().create_timer(laser_animation).timeout
 	laser_shot.emit(laser_scene, muzzle.global_position)
 
 func die():
