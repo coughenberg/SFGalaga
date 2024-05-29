@@ -1,10 +1,45 @@
-[gd_scene load_steps=4 format=3 uid="uid://l5obovxkb0y2"]
+[gd_scene load_steps=11 format=3 uid="uid://l5obovxkb0y2"]
 
 [ext_resource type="Script" path="res://asteroids/small_asteroid.gd" id="1_2bynu"]
-[ext_resource type="Texture2D" uid="uid://xlth0gumg3gm" path="res://asteroids/small_asteroid.png" id="2_honm6"]
+[ext_resource type="Texture2D" uid="uid://xlth0gumg3gm" path="res://asteroids/assets/small_asteroid.png" id="2_41h16"]
+[ext_resource type="Texture2D" uid="uid://8p005khwjio2" path="res://asteroids/assets/explosion/explosion1.png" id="3_ni1v3"]
+[ext_resource type="Texture2D" uid="uid://dgp6eua4rp0ae" path="res://asteroids/assets/explosion/explosion2.png" id="4_ooax4"]
+[ext_resource type="Texture2D" uid="uid://1p0srfit1k6i" path="res://asteroids/assets/explosion/explosion3.png" id="5_ufk2g"]
+[ext_resource type="Texture2D" uid="uid://p0w8n0fo1602" path="res://asteroids/assets/explosion/explosion4.png" id="6_vbtl3"]
+[ext_resource type="Texture2D" uid="uid://cql6n3b3tbvka" path="res://asteroids/assets/explosion/explosion5.png" id="7_udl8d"]
+[ext_resource type="Texture2D" uid="uid://c1yiutntxp6ta" path="res://asteroids/assets/explosion/explosion6.png" id="8_dbtc6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5fpuj"]
 size = Vector2(12, 13)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_faf60"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_ni1v3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ooax4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ufk2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vbtl3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_udl8d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_dbtc6")
+}],
+"loop": true,
+"name": &"explosion",
+"speed": 24.0
+}]
 
 [node name="Small Asteroid" type="Area2D"]
 collision_layer = 2
@@ -12,7 +47,7 @@ collision_mask = 5
 script = ExtResource("1_2bynu")
 
 [node name="SASprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_honm6")
+texture = ExtResource("2_41h16")
 
 [node name="SACollision" type="CollisionShape2D" parent="."]
 position = Vector2(0, -0.5)
@@ -21,6 +56,12 @@ shape = SubResource("RectangleShape2D_5fpuj")
 [node name="SAVisible" type="VisibleOnScreenNotifier2D" parent="."]
 position = Vector2(0, -0.5)
 scale = Vector2(0.6, 0.65)
+
+[node name="AnimateExplosion" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -0.5)
+scale = Vector2(0.375, 0.40625)
+sprite_frames = SubResource("SpriteFrames_faf60")
+animation = &"explosion"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="screen_exited" from="SAVisible" to="." method="_on_sa_visible_screen_exited"]
